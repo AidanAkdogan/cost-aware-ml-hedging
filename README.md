@@ -114,6 +114,8 @@ By **separating the decision from execution**, we can:
 
 This separation means the ML model only needs to learn *what's urgent*, not *how to trade*.
 
+The 70th percentile was selected to bias the model against **under-hedging**, which dominates tail risk under transaction costs
+
 ---
 
 ## 📊 Key Results
@@ -129,7 +131,7 @@ This separation means the ML model only needs to learn *what's urgent*, not *how
 | Avg Trades/Episode | 29.1 | 11.9 | **22.5** |
 
 **Interpretation:**
-- 20.9% cost savings translates to **~$1.5M annually** at institutional scale
+- 20.9% cost savings translates to **~$1.5M annually** at institutional scale (Order-of-magnitude estimate under simplified assumptions)
 - Slight increase in P&L variance is acceptable trade-off (still within 15% of BS)
 - Sharpe improvement demonstrates better risk-adjusted performance
 - 22% fewer trades than Black-Scholes → execution efficiency
@@ -181,6 +183,8 @@ Performance Gain:
 - **Trials:** 50 evaluations, each tested on 3 independent seed blocks
 - **Convergence:** Optimal found within 30-40 trials
 
+**Results are conditioned on Black–Scholes dynamics and proportional transaction costs; extensions to stochastic volatility and nonlinear impact are left for future work.**
+
 ---
 
 ## 📈 Visual Evidence
@@ -199,36 +203,9 @@ Performance Gain:
 
 ---
 
-## 🧮 Why Transaction Costs Matter
+## What I have learnt
 
-### Real-World Impact
-
-Consider a market maker hedging **1,000 call options daily**:
-
-**Black-Scholes approach:**
-- Rebalances 30 times over 30-day life
-- ~13.5 trades per option on average
-- Transaction cost: 13.5 × $0.05 = **$0.68 per option**
-- Annual volume: 250 days × 1,000 options = **250,000 options**
-- **Annual cost: $170,000**
-
-**ML two-stage approach:**
-- ~10.9 trades per option (19% reduction)
-- Transaction cost: 10.9 × $0.05 = **$0.55 per option**
-- **Annual cost: $137,500**
-- **Savings: $32,500 (19%)**
-
-At **institutional scale** (100,000 options/day):
-- **Annual savings: ~$3.25 million**
-- **With improved Sharpe:** better capital efficiency, lower VaR requirements
-
-This is why market makers care about execution optimization.
-
----
-
-## Research Contributions
-
-### Novel Aspects
+### Novel Ideas
 
 1. **Two-stage control decomposition** for continuous-action stochastic control
 2. **Asymmetric loss function** (quantile regression) for hedging under costs
