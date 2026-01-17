@@ -286,6 +286,6 @@ This is why market makers care about execution optimization.
 **Interested in discussing this work?**
 
 - 📫 **Email:** [aidanjakdogan@gmail.com]
-- 💼 **LinkedIn:** [[linkedin.com/in/yourprofile](https://www.linkedin.com/in/aidan-akdogan-9699b63a3/)]
+- 💼 **LinkedIn:** [https://www.linkedin.com/in/aidan-akdogan-9699b63a3/]
 
 
